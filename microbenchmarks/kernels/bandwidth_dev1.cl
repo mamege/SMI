@@ -13,15 +13,16 @@ __kernel void app(__global char *mem, const int N, SMI_Comm comm)
 {
     SMI_Channel chan=SMI_Open_receive_channel_ad(N, SMI_DOUBLE, 0, 0, comm, 2048);
     const double start=0.1f;
+    double rslt;
+
     char check=1;
     for(int i=0;i<N;i++)
     {
-
         double rcvd;
         SMI_Pop(&chan,&rcvd);
-       
+        rslt = rcvd;
     }
-    check = (rcvd==(start+N-1));
+    check = (rslt==(start+N-1));
     *mem=check;
 
 }
@@ -30,15 +31,16 @@ __kernel void app_1(__global char *mem, const int N,SMI_Comm comm)
 {
     SMI_Channel chan=SMI_Open_receive_channel_ad(N, SMI_DOUBLE, 0, 1, comm, 2048);
     const double start=0.1f;
-    char check=1;
+    double rslt;
 
+    char check=1;
     for(int i=0;i<N;i++)
     {
-
         double rcvd;
         SMI_Pop(&chan,&rcvd);
+        rslt = rcvd;
     }
-    check = (rcvd==(start+N-1));
+    check = (rslt==(start+N-1));
     *mem=check;
 
 }
