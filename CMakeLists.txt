@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 project(smi)
 
 # Configuration
-set(SMI_TARGET_BOARD "p520_max_sg280l" CACHE STRING "aoc target board.")
+set(SMI_TARGET_BOARD "p520_max_sg280h" CACHE STRING "aoc target board.")
 
 set(SMI_REWRITER "${CMAKE_BINARY_DIR}/source-rewriter/rewriter")
 
