@@ -88,9 +88,9 @@ int main(int argc, char *argv[])
         if(!emulator)
         {
             if(rank==0)
-                program_path = replace(program_path, "<rank>", std::string("0"));
+                program_path = replaceAll(program_path, "<rank>", std::string("0"));
             else //any rank other than 0
-                program_path = replace(program_path, "<rank>", std::string("1"));
+                program_path = replaceAll(program_path, "<rank>", std::string("1"));
         }
         else//for emulation
         {
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
         else
         {
             if(rank==0) program_path="bandwidth_dev0/bandwidth_dev0.aocx";
-            else program_path="bandwidth_dev1/bandwidth_dev1.aocx";
+            else program_path="bandwidth_dev_1/bandwidth_dev_1.aocx";
         }
 
     }
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
     hlslib::ocl::Context context(fpga);
     auto program = context.MakeProgram(program_path);
     std::vector<hlslib::ocl::Buffer<char, hlslib::ocl::Access::read>> buffers;
-    SMI_Comm comm=SmiInit_bandwidth_dev0(rank, rank_count, ROUTING_DIR, context, program, buffers);
+    SMI_Comm comm=SmiInit_bandwidth_dev_0(rank, rank_count, ROUTING_DIR, context, program, buffers);
 
      // Create device buffers
     hlslib::ocl::Buffer<char, hlslib::ocl::Access::readWrite> check_0 = context.MakeBuffer<char, hlslib::ocl::Access::readWrite>(1);
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 
         //save the info into output file
         std::ostringstream filename;
-        filename << "smi_bandwidth_"<<rank_count-1 <<"_hops_"<< kb << "KB.dat";
+        filename << "smi_bandwidth_"<< recv_rank <<"_hops_"<< kb << "KB.dat";
         std::cout << "Saving info into: "<<filename.str()<<std::endl;
         ofstream fout(filename.str());
         fout << "#Sent (KB) = "<<data_sent_KB<<", Runs = "<<runs<<endl;

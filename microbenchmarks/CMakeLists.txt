@@ -24,7 +24,7 @@ if(PythonInterp_FOUND)
     smi_target(bw_eager_dev 
     "${CMAKE_CURRENT_SOURCE_DIR}/kernels/bandwidth_dev.json" 
     "${CMAKE_CURRENT_SOURCE_DIR}/host/bandwidth_dev_host.cpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/kernels/bandwidth_dev0.cl;${CMAKE_CURRENT_SOURCE_DIR}/kernels/bandwidth_dev1.cl" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/kernels/bandwidth_dev_0.cl;${CMAKE_CURRENT_SOURCE_DIR}/kernels/bandwidth_dev_1.cl" 
     8 8 8 OFF)
 
 endif()

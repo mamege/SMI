@@ -1,9 +1,0 @@
-{
-    "fpgas": {
-      "fnode01:acl0": "bandwidth_0",
-      "fnode01:acl1": "bandwidth_1"
-    },
-    "connections": {
-      "fnode01:acl0:ch0": "fnode01:acl1:ch1"
-    }
-  }

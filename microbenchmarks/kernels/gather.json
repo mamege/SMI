@@ -1,9 +1,0 @@
-{
-    "fpgas": {
-      "fnode01:acl0": "gather",
-      "fnode01:acl1": "gather"
-    },
-    "connections": {
-      "fnode01:acl0:ch0": "fnode01:acl1:ch1"
-    }
-  }
