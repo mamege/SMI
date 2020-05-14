@@ -1,0 +1,15 @@
+: ${MICROBENCH:="{{TARGET}}"}
+module purge; module use /home/kashino/modules;
+# openmpiのmodulefileの読み込みにgcc/4.8.5が必要だが，実際に使用するのはgcc/9.1.0
+# システムの環境設定の問題であり，SMIは関係ない．
+module load gcc/4.8.5 openmpi/3.0.1; module switch gcc/9.1.0
+
+echo "===== This is exec_1KBto512MB ====="
+cd $(dirname $0)
+for i in {0..19}; do
+    val=$((2**$i))
+    echo  "--- exec $val "
+    {{SLURM_AND_MPI_COMMANDS}}
+        ./${MICROBENCH}_host -m hardware -r 1 -i 100 {{HOST_ARGUMENTS}}
+done
+cd - && echo "done"
