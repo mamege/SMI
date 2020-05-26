@@ -10,6 +10,6 @@ for i in {0..19}; do
     val=$((2**$i))
     echo  "--- exec $val "
     {{SLURM_AND_MPI_COMMANDS}}
-        ./${MICROBENCH}_host -m hardware -r 1 -i 100 {{HOST_ARGUMENTS}}
+        ./${MICROBENCH}_host -m hardware -r 1 -i 100 {{HOST_ARGUMENTS}} ${1:-""}
 done
 cd - && echo "done"
